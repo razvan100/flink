@@ -102,6 +102,7 @@ Note that if you use the `MemoryStateBackend`, metadata *and* savepoint state wi
 
 #### Trigger a Savepoint
 
+
 ```sh
 $ bin/flink savepoint :jobId [:targetDirectory]
 ```
@@ -119,6 +120,11 @@ $ bin/flink cancel -s [:targetDirectory] :jobId
 This will atomically trigger a savepoint for the job with ID `:jobid` and cancel the job. Furthermore, you can specify a target file system directory to store the savepoint in.  The directory needs to be accessible by the JobManager.
 
 If you don't specify a target directory, you need to have [configured a default directory](#configuration). Otherwise, cancelling the job with a savepoint will fail.
+
+<div class="alert alert-info">
+  <strong>Note:</strong><code>[:targetDirectory]</code>has to be a location accessible by both the JobManager(s) and TaskManager(s) e.g. a location on a distributed file-system.
+</div>
+
 
 ### Resuming from Savepoints
 
